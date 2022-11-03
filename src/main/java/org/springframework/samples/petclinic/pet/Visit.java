@@ -24,6 +24,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -58,6 +59,13 @@ public class Visit extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
+	
+	
+	
+	@ManyToOne(optional=true)
+	@JoinColumn(name ="recoveryroom")
+	private RecoveryRoom rr;
+	
 
 	/**
 	 * Creates a new instance of Visit for the current date
@@ -114,13 +122,15 @@ public class Visit extends BaseEntity {
 		this.pet = pet;
 	}
 
+	
 	public RecoveryRoom getRecoveryRoom() {
 		// To be implemented
-		return null;
+		return this.rr;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+		
+		this.rr=room;
 	}
 
 }
